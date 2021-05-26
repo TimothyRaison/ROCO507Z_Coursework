@@ -1,0 +1,93 @@
+
+function sysCall_init()
+    -- do some initialization here
+    
+    link1 = sim.getObjectHandle('first_link')
+    link2 = sim.getObjectHandle('2nd_link')
+    link3 = sim.getObjectHandle('3rd_link')
+    link4 = sim.getObjectHandle('4th_Link')
+    link5 = sim.getObjectHandle('final_big_revolute')
+    link6 = sim.getObjectHandle('Revolute_joint')
+    link7 = sim.getObjectHandle('light_link')
+    
+    last_time = sim.getSimulationTime()
+    
+    xml = [[
+<ui title="Angle customiser" closeable="true" resizable="false" activate="false">
+    <group layout="form" flat="true">
+        <label text="Link 1 angle (degrees): 0" id="1"/>
+        <hslider tick-position="above" tick-interval="1" minimum="0" maximum="360" on-change="Link1Change" id="2"/>
+        <label text="Link 2 angle (degrees): 0" id="3"/>
+        <hslider tick-position="above" tick-interval="1" minimum="-90" maximum="90" on-change="Link2Change" id="4"/>
+        <label text="Link 3 angle (degrees): 0" id="5"/>
+        <hslider tick-position="above" tick-interval="1" minimum="0" maximum="360" on-change="Link3Change" id="6"/>
+        <label text="Link 4 angle (degrees): 0" id="7"/>
+        <hslider tick-position="above" tick-interval="1" minimum="-90" maximum="90" on-change="Link4Change" id="8"/>
+        <label text="Link 5 angle (degrees): 0" id="9"/>
+        <hslider tick-position="above" tick-interval="1" minimum="0" maximum="360" on-change="Link5Change" id="10"/>
+        <label text="Link 6 angle (degrees): 0" id="11"/>
+        <hslider tick-position="above" tick-interval="1" minimum="-90" maximum="90" on-change="Link6Change" id="12"/>
+        <label text="Link 7 angle (degrees): 0" id="13"/>
+        <hslider tick-position="above" tick-interval="1" minimum="0" maximum="360" on-change="Link7Change" id="14"/>
+        <label text="coordinate mode" id="15"/>
+        <button text = "mode" on-click = "freemove" checkable="true" id="16"/>
+        
+    </group>
+    <label text="" style="* {margin-left: 400px;}"/>
+</ui>
+]]
+        ui=simUI.create(xml)
+end
+
+function Link1Change(ui,id,newVal)
+    sim.setJointTargetPosition(link1,newVal*math.pi/180)
+    simUI.setLabelText(ui,1,string.format("Link 1 angle (degrees): %.i",newVal))
+end
+
+function Link2Change(ui,id,newVal)
+    sim.setJointTargetPosition(link2,newVal*math.pi/180)
+    simUI.setLabelText(ui,3,string.format("Link 2 angle (degrees): %.i",newVal))
+end
+
+function Link3Change(ui,id,newVal)
+    sim.setJointTargetPosition(link3,newVal*math.pi/180)
+    simUI.setLabelText(ui,5,string.format("Link 3 angle (degrees): %.i",newVal))
+end
+
+function Link4Change(ui,id,newVal)
+    sim.setJointTargetPosition(link4,newVal*math.pi/180)
+    simUI.setLabelText(ui,7,string.format("Link 4 angle (degrees): %.i",newVal))
+end
+
+function Link5Change(ui,id,newVal)
+    sim.setJointTargetPosition(link5,newVal*math.pi/180)
+    simUI.setLabelText(ui,9,string.format("Link 5 angle (degrees): %.i",newVal))
+end
+
+function Link6Change(ui,id,newVal)
+    sim.setJointTargetPosition(link6,newVal*math.pi/180)
+    simUI.setLabelText(ui,11,string.format("Link 6 angle (degrees): %.i",newVal))
+end
+
+function Link7Change(ui,id,newVal)
+    sim.setJointTargetPosition(link7,newVal*math.pi/180)
+    simUI.setLabelText(ui,13,string.format("Link 7 angle (degrees): %.i",newVal))
+end
+
+function freemove()
+end
+
+
+function sysCall_actuation()
+    -- put your actuation code here
+end
+
+function sysCall_sensing()
+    -- put your sensing code here
+end
+
+function sysCall_cleanup()
+    -- do some clean-up here
+end
+
+-- See the user manual or the available code snippets for additional callback functions and details
